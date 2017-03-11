@@ -44,7 +44,7 @@ class Installer implements Setup\SampleData\InstallerInterface
      */
     public function install()
     {
-        /*$this->catalogSetup->install();
+        $this->catalogSetup->install();
         echo ("catalogSetup\n");
         $this->relatedProducts->install(['MagentoEse_B2BSampleData::fixtures/related_products.csv']);
         echo ("relatedProducts\n");
@@ -54,7 +54,7 @@ class Installer implements Setup\SampleData\InstallerInterface
         $this->preferredProducts->install(['MagentoEse_B2BSampleData::fixtures/preferredproducts.csv']);
         echo ("preferredProducts\n");
         $this->tierPricing->install();
-        echo ("tierPricing\n");*/
+        echo ("tierPricing\n");
 
 
     }
