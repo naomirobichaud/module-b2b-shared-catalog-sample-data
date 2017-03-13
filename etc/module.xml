@@ -20,6 +20,8 @@
             <module name="MagentoEse_SalesSampleData"/>
             <module name="FireGento_FastSimpleImport2"/>
             <module name="MagentoEse_B2BCompanySampleData"/>
+            <module name="Magento_Swatches"/>
+            <module name="Magento_SwatchesLayeredNavigation"/>
         </sequence>
     </module>
 </config>

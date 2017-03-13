@@ -28,7 +28,8 @@ class Installer implements Setup\SampleData\InstallerInterface
         \MagentoEse\B2BSharedCatalogSampleData\Model\SharedCatalogConfig $sharedCatalogConfig,
         \MagentoEse\B2BSharedCatalogSampleData\Model\TierPricing $tierPricing,
         \MagentoEse\B2BSharedCatalogSampleData\Model\PreferredProducts $preferredProducts,
-        \MagentoEse\B2BSharedCatalogSampleData\Model\Related $relatedProducts
+        \MagentoEse\B2BSharedCatalogSampleData\Model\Related $relatedProducts,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
 
     ) {
 
@@ -37,14 +38,16 @@ class Installer implements Setup\SampleData\InstallerInterface
         $this->tierPricing = $tierPricing;
         $this->preferredProducts = $preferredProducts;
         $this->relatedProducts = $relatedProducts;
+        $this->scopeConfig = $scopeConfig;
     }
+
 
     /**
      * {@inheritdoc}
      */
     public function install()
     {
-        $this->catalogSetup->install();
+         $this->catalogSetup->install();
         echo ("catalogSetup\n");
         $this->relatedProducts->install(['MagentoEse_B2BSampleData::fixtures/related_products.csv']);
         echo ("relatedProducts\n");
