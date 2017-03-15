@@ -68,8 +68,10 @@ class TierPricing
             $tierProduct->load($productId);
             $orgPrice = $tierProduct->getPrice();
             $tierPriceData = array(
-                array ('website_id'=>0, 'cust_group'=>$custGroup, 'price_qty' => 10, 'price'=>round($orgPrice - ($orgPrice*.1),2)),
-                array ('website_id'=>0, 'cust_group'=>$custGroup, 'price_qty' => 20, 'price'=>round($orgPrice - ($orgPrice*.2),2))
+                /*array ('website_id'=>0, 'cust_group'=>$custGroup, 'price_qty' => 10, 'price'=>round($orgPrice - ($orgPrice*.1),2)),
+                array ('website_id'=>0, 'cust_group'=>$custGroup, 'price_qty' => 20, 'price'=>round($orgPrice - ($orgPrice*.2),2))*/
+                array ('website_id'=>0, 'cust_group'=>$custGroup, 'price_qty' => 10, 'percentage_value'=>10),
+                array ('website_id'=>0, 'cust_group'=>$custGroup, 'price_qty' => 20, 'percentage_value'=>20)
             );
             // $foo = $this->product->getTierPrices();
             $tierProduct->setData('tier_price', $tierPriceData);

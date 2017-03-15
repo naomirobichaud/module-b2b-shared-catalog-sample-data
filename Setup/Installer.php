@@ -47,18 +47,10 @@ class Installer implements Setup\SampleData\InstallerInterface
      */
     public function install()
     {
-         $this->catalogSetup->install();
-        echo ("catalogSetup\n");
-        $this->relatedProducts->install(['MagentoEse_B2BSampleData::fixtures/related_products.csv']);
-        echo ("relatedProducts\n");
-        //$this->index->reindexAll();
+        $this->catalogSetup->install();
+        $this->relatedProducts->install(['MagentoEse_B2BSharedCatalogSampleData::fixtures/related_products.csv']);
         $this->sharedCatalogConfig->install();
-        echo ("sharedCatalogConfig\n");
-        $this->preferredProducts->install(['MagentoEse_B2BSampleData::fixtures/preferredproducts.csv']);
-        echo ("preferredProducts\n");
+        $this->preferredProducts->install(['MagentoEse_B2BSharedCatalogSampleData::fixtures/preferredproducts.csv']);
         $this->tierPricing->install();
-        echo ("tierPricing\n");
-
-
     }
 }
