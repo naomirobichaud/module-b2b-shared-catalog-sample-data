@@ -18,16 +18,20 @@ class SharedCatalogConfig {
     protected $publicCats = array('All Products');
 
     public function __construct(
-        \Magento\SharedCatalog\Model\Repository $sharedCatalogRepository,
+        \Magento\SharedCatalog\Api\SharedCatalogRepositoryInterface $sharedCatalogRepository,
         \Magento\Catalog\Model\ResourceModel\Category\Collection $categoryCollection,
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
-        \Magento\SharedCatalog\Model\SharedCatalogAssignment $sharedCatalogAssignment
+        \Magento\SharedCatalog\Model\SharedCatalogAssignment $sharedCatalogAssignment,
+        \Magento\SharedCatalog\Api\CategoryManagementInterface $categoryManagement,
+        \Magento\Catalog\Api\CategoryRepositoryInterface $categoryFactory
     )
     {
         $this->sharedCatalogRepository = $sharedCatalogRepository;
         $this->categoryCollection = $categoryCollection;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->sharedCatalogAssignment = $sharedCatalogAssignment;
+        $this->categoryManagement = $categoryManagement;
+        $this->categoryFactory = $categoryFactory;
     }
 
     public function install(){
@@ -48,6 +52,8 @@ class SharedCatalogConfig {
         }
         //get catalog id
         $catalogId = $this->getCatalogByName($catalogName)->getid();
+        //assign categories to catalog
+        $this->categoryManagement->assignCategories($catalogId,$this->getCategories($customCatIds));
         //assign to catalog
         $this->sharedCatalogAssignment->assignProductsForCategories($catalogId,$customCatIds);
     }
@@ -58,6 +64,15 @@ class SharedCatalogConfig {
             return $categories[$string];
         }
         return false;
+    }
+
+    protected function getCategories($categoryIds){
+        $categories = [];
+        foreach($categoryIds as $categoryId){
+            $category = $this->categoryFactory->get($categoryId);
+           array_push($categories,$category);
+        }
+        return $categories;
     }
 
     protected function _initCategories()
