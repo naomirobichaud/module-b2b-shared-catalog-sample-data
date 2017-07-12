@@ -39,6 +39,15 @@ class TierPricing
      * @var \Magento\Catalog\Api\ProductRepositoryInterface
      */
     protected $productRepository;
+    /**
+     * @var array
+     */
+    protected $tierPricingCategoryPath = array('All Products/Lighting/LED Lamps');
+
+    /**
+     * @var string
+     */
+    protected $tierPricingGroup = 'Tools & Lighting';
 
 
     /**
@@ -71,10 +80,7 @@ class TierPricing
 
     public function install()
     {
-        /* There appears to be a bug in setting tier price discount by percentage
-        for the near term, the new price will be calculated and set as a new price */
-        //TODO:get category from config
-        $categoryPaths = array('All Products/Lighting/LED Lamps');
+        $categoryPaths = $this->tierPricingCategoryPath;
         $tierCatIds = array();
 
         foreach ($categoryPaths as $categoryPath){
@@ -82,27 +88,18 @@ class TierPricing
         }
 
 
-        $custGroup = $this->getGroupIdFromName('Tools & Lighting');
+        $custGroup = $this->getGroupIdFromName($this->tierPricingGroup);
 
-        //get product ids by category
-       /* $tierProducts = array();
-        foreach ($tierCatIds as $productId){
-            $products = $this->categoryManagement->getCategoryProductIds($productId);
-            $tierProducts = array_merge($tierProducts, $products);
-        }*/
+
         $tierProducts = $this->getProductsByCategoryIds($tierCatIds);
         foreach($tierProducts as $product){
             $productId = $product->getId();
             $tierProduct = $this->product->create();
             $tierProduct->load($productId);
-            $orgPrice = $tierProduct->getPrice();
             $tierPriceData = array(
-                /*array ('website_id'=>0, 'cust_group'=>$custGroup, 'price_qty' => 10, 'price'=>round($orgPrice - ($orgPrice*.1),2)),
-                array ('website_id'=>0, 'cust_group'=>$custGroup, 'price_qty' => 20, 'price'=>round($orgPrice - ($orgPrice*.2),2))*/
                 array ('website_id'=>0, 'cust_group'=>$custGroup, 'price_qty' => 10, 'percentage_value'=>10),
                 array ('website_id'=>0, 'cust_group'=>$custGroup, 'price_qty' => 20, 'percentage_value'=>20)
             );
-            // $foo = $this->product->getTierPrices();
             $tierProduct->setData('tier_price', $tierPriceData);
             $tierProduct->save();
 
