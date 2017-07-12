@@ -11,16 +11,45 @@ class TierPricing
 {
 
     /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     * @var \Magento\Catalog\Model\ProductFactory
      */
-
     protected $product;
-    protected $categoryManagement;
+
+    /**
+     * @var \Magento\Catalog\Model\ResourceModel\Category\Collection
+     */
     protected $categoryCollection;
+
+    /**
+     * @var \Magento\Customer\Model\Group
+     */
     protected $group;
 
+    /**
+     * @var \Magento\SharedCatalog\Api\Data\SharedCatalogInterface
+     */
+    protected $sharedCatalog;
+
+    /**
+     * @var \Magento\Framework\Api\SearchCriteriaBuilder
+     */
+    protected $searchCriteriaBuilder;
+
+    /**
+     * @var \Magento\Catalog\Api\ProductRepositoryInterface
+     */
+    protected $productRepository;
 
 
+    /**
+     * TierPricing constructor.
+     * @param \Magento\Catalog\Model\ProductFactory $product
+     * @param \Magento\Catalog\Model\ResourceModel\Category\Collection $categoryCollection
+     * @param \Magento\Customer\Model\Group $group
+     * @param \Magento\SharedCatalog\Api\Data\SharedCatalogInterface $sharedCatalog
+     * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
+     */
     public function __construct(
 
         \Magento\Catalog\Model\ProductFactory $product,
@@ -78,9 +107,12 @@ class TierPricing
             $tierProduct->save();
 
         }
-        $this->__destruct();
     }
 
+    /**
+     * @param array $categoriesIds
+     * @return \Magento\Catalog\Api\Data\ProductInterface[]
+     */
     private function getProductsByCategoryIds(array $categoriesIds)
     {
         /** @var \Magento\Framework\Api\SearchCriteria $searchCriteria */
@@ -90,11 +122,20 @@ class TierPricing
         return $this->productRepository->getList($searchCriteria)->getItems();
     }
 
+    /**
+     * @param $name
+     * @return mixed
+     */
     protected function getGroupIdFromName($name){
         $groupLoad = $this->group->load($name,'customer_group_code');
         return $groupLoad->getid();
     }
 
+    /**
+     * @param $categories
+     * @param $string
+     * @return bool
+     */
     protected function getIdFromPath($categories,$string)
     {
         if (in_array($string, array_keys($categories))) {
@@ -104,6 +145,9 @@ class TierPricing
         return false;
     }
 
+    /**\
+     * @return array
+     */
     protected function _initCategories()
     {
         $collection = $this->categoryCollection->addNameToResult();
@@ -130,14 +174,4 @@ class TierPricing
         }
         return $categories;
     }
-    public function __destruct(){
-        $this->product = null;
-        $this->categoryCollection = null;
-        $this->group = null;
-        $this->sharedCatalog = null;
-        $this->searchCriteriaBuilder = null;
-        $this->productRepository = null;
-    }
-
-
 }

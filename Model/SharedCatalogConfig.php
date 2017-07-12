@@ -8,15 +8,55 @@ namespace MagentoEse\B2BSharedCatalogSampleData\Model;
 
 class SharedCatalogConfig {
 
+    /**
+     * @var \Magento\SharedCatalog\Api\SharedCatalogRepositoryInterface
+     */
     protected $sharedCatalogRepository;
+
+    /**
+     * @var \Magento\Catalog\Model\ResourceModel\Category\Collection
+     */
     protected $categoryCollection;
+
+    /**
+     * @var \Magento\Framework\Api\SearchCriteriaBuilder
+     */
     protected $searchCriteriaBuilder;
+
+    /**
+     * @var string
+     */
     protected $sharedCatalogName = 'Tools & Lighting';
+
+    /**
+     * @var string
+     */
     protected $validCatalogName = 'Registered Users';
+
+    /**
+     * @var string
+     */
     protected $publicCatalogName = 'Default (General)';
+
+    /**
+     * @var array
+     */
     protected $customCats = array('All Products/Lighting','All Products/Tools');
+
+    /**
+     * @var array
+     */
     protected $publicCats = array('All Products');
 
+    /**
+     * SharedCatalogConfig constructor.
+     * @param \Magento\SharedCatalog\Api\SharedCatalogRepositoryInterface $sharedCatalogRepository
+     * @param \Magento\Catalog\Model\ResourceModel\Category\Collection $categoryCollection
+     * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param \Magento\SharedCatalog\Model\SharedCatalogAssignment $sharedCatalogAssignment
+     * @param \Magento\SharedCatalog\Api\CategoryManagementInterface $categoryManagement
+     * @param \Magento\Catalog\Api\CategoryRepositoryInterface $categoryFactory
+     */
     public function __construct(
         \Magento\SharedCatalog\Api\SharedCatalogRepositoryInterface $sharedCatalogRepository,
         \Magento\Catalog\Model\ResourceModel\Category\Collection $categoryCollection,
@@ -41,9 +81,12 @@ class SharedCatalogConfig {
         $this->assignProductsToCatalog($this->validCatalogName, $this->publicCats);
         /* add products to default catalog */
         $this->assignProductsToCatalog($this->publicCatalogName, $this->publicCats);
-        $this->__destruct();
     }
 
+    /**
+     * @param string $catalogName
+     * @param array $categoryPaths
+     */
     private function assignProductsToCatalog($catalogName, array $categoryPaths)
     {
         $customCatIds = array();
@@ -58,6 +101,11 @@ class SharedCatalogConfig {
         $this->sharedCatalogAssignment->assignProductsForCategories($catalogId,$customCatIds);
     }
 
+    /**
+     * @param $categories
+     * @param $string
+     * @return bool
+     */
     protected function getIdFromPath($categories,$string)
     {
         if (in_array($string, array_keys($categories))) {
@@ -66,6 +114,10 @@ class SharedCatalogConfig {
         return false;
     }
 
+    /**
+     * @param $categoryIds
+     * @return array
+     */
     protected function getCategories($categoryIds){
         $categories = [];
         foreach($categoryIds as $categoryId){
@@ -75,6 +127,9 @@ class SharedCatalogConfig {
         return $categories;
     }
 
+    /**
+     * @return array
+     */
     protected function _initCategories()
     {
         $collection = $this->categoryCollection->addNameToResult();
@@ -102,17 +157,14 @@ class SharedCatalogConfig {
         return $categories;
     }
 
+    /**
+     * @param $catalogName
+     * @return \Magento\SharedCatalog\Api\Data\SharedCatalogInterface|mixed
+     */
     protected function getCatalogByName($catalogName){
         $catalogFilter = $this->searchCriteriaBuilder;
         $catalogFilter->addFilter('name',$catalogName);
         $catalogList = $this->sharedCatalogRepository->getList($catalogFilter->create())->getItems();
         return reset($catalogList);
-    }
-    public function __destruct(){
-        $this->sharedCatalogRepository = null;
-        $this->categoryCollection = null;
-        $this->searchCriteriaBuilder = null;
-        $this->sharedCatalogAssignment = null;
-
     }
 }

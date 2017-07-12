@@ -11,25 +11,46 @@ use Magento\Framework\Setup;
 class Installer implements Setup\SampleData\InstallerInterface
 {
 
-    protected $companySetup;
-    protected $customerSetup;
-    protected $salesrepSetup;
-    protected $teamSetup;
+    /**
+     * @var \MagentoEse\B2BSharedCatalogSampleData\Model\CompanyCatalog
+     */
     protected $catalogSetup;
+
+    /**
+     * @var \MagentoEse\B2BSharedCatalogSampleData\Model\SharedCatalogConfig
+     */
     protected $sharedCatalogConfig;
+
+    /**
+     * @var \MagentoEse\B2BSharedCatalogSampleData\Model\TierPricing
+     */
     protected $tierPricing;
+
+    /**
+     * @var \MagentoEse\B2BSharedCatalogSampleData\Model\Related
+     */
     protected $relatedProducts;
-    protected $sampleOrder;
-    protected $index;
+
+    /**
+     * @var \MagentoEse\B2BSharedCatalogSampleData\Model\PreferredProducts
+     */
+    protected $preferredProducts;
 
 
+    /**
+     * Installer constructor.
+     * @param \MagentoEse\B2BSharedCatalogSampleData\Model\CompanyCatalog $catalogSetup
+     * @param \MagentoEse\B2BSharedCatalogSampleData\Model\SharedCatalogConfig $sharedCatalogConfig
+     * @param \MagentoEse\B2BSharedCatalogSampleData\Model\TierPricing $tierPricing
+     * @param \MagentoEse\B2BSharedCatalogSampleData\Model\PreferredProducts $preferredProducts
+     * @param \MagentoEse\B2BSharedCatalogSampleData\Model\Related $relatedProducts
+     */
     public function __construct(
         \MagentoEse\B2BSharedCatalogSampleData\Model\CompanyCatalog $catalogSetup,
         \MagentoEse\B2BSharedCatalogSampleData\Model\SharedCatalogConfig $sharedCatalogConfig,
         \MagentoEse\B2BSharedCatalogSampleData\Model\TierPricing $tierPricing,
         \MagentoEse\B2BSharedCatalogSampleData\Model\PreferredProducts $preferredProducts,
-        \MagentoEse\B2BSharedCatalogSampleData\Model\Related $relatedProducts,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+        \MagentoEse\B2BSharedCatalogSampleData\Model\Related $relatedProducts
 
     ) {
 
@@ -38,9 +59,7 @@ class Installer implements Setup\SampleData\InstallerInterface
         $this->tierPricing = $tierPricing;
         $this->preferredProducts = $preferredProducts;
         $this->relatedProducts = $relatedProducts;
-        $this->scopeConfig = $scopeConfig;
     }
-
 
     /**
      * {@inheritdoc}

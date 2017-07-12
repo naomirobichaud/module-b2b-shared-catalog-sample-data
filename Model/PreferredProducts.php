@@ -13,8 +13,14 @@ use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 class PreferredProducts
 {
 
-
+    /**
+     * @var SampleDataContext
+     */
     protected $sampleDataContext;
+
+    /**
+     * @var \Magento\Catalog\Model\ProductFactory
+     */
     protected $product;
 
     /**
@@ -28,7 +34,13 @@ class PreferredProducts
      */
     protected $categoryCollection;
 
-
+    /**
+     * PreferredProducts constructor.
+     * @param SampleDataContext $sampleDataContext
+     * @param \Magento\Catalog\Model\ProductFactory $product
+     * @param \Magento\Framework\App\ResourceConnection $resourceConnection
+     * @param \Magento\Catalog\Model\ResourceModel\Category\Collection $categoryCollection
+     */
     public function __construct(
         SampleDataContext $sampleDataContext,
        \Magento\Catalog\Model\ProductFactory $product,
@@ -41,10 +53,11 @@ class PreferredProducts
         $this->product = $product;
         $this->resourceConnection = $resourceConnection;
         $this->categoryCollection = $categoryCollection;
-
-
     }
 
+    /**
+     * @param array $fixtures
+     */
     public function install(array $fixtures)
     {
         $preferredCategories = array('All Products/Tools','All Products/Tools/Power Tools');
@@ -84,10 +97,13 @@ class PreferredProducts
             }
 
         }
-        $this->__destruct();
     }
 
-
+    /**
+     * @param int $categoryId
+     * @param int $productId
+     * @param int $position
+     */
     private function updateProductPosition($categoryId,$productId,$position){
         //this is not the proper method, but was done in interest of deadline
         $connection = $this->resourceConnection->getConnection();
@@ -96,6 +112,11 @@ class PreferredProducts
         $connection->query($sql);
     }
 
+    /**
+     * @param array $categories
+     * @param $string
+     * @return bool
+     */
     protected function getIdFromPath($categories,$string)
     {
         if (in_array($string, array_keys($categories))) {
@@ -131,13 +152,4 @@ class PreferredProducts
         }
         return $categories;
     }
-
-
-
-    public function __destruct(){
-        $this->fixtureManager = null;
-        $this->csvReader = null;
-        $this->product = null;
-    }
-
 }

@@ -10,10 +10,23 @@ use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 
 
  class Related {
+
+     /**
+      * @var \Magento\TargetRule\Model\RuleFactory
+      */
      protected $rule;
+
+     /**
+      * @var SampleDataContext
+      */
      protected $sampleDataContext;
 
 
+     /**
+      * Related constructor.
+      * @param SampleDataContext $sampleDataContext
+      * @param \Magento\TargetRule\Model\RuleFactory $rule
+      */
      public function __construct(
          SampleDataContext $sampleDataContext,
          \Magento\TargetRule\Model\RuleFactory $rule
@@ -23,6 +36,9 @@ use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
          $this->rule = $rule;
      }
 
+     /**
+      * @param array $fixtures
+      */
      public function install(array $fixtures)
      {
 
@@ -64,12 +80,5 @@ use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
              }
 
          }
-         $this->__destruct();
      }
-     public function __destruct(){
-         $this->fixtureManager = null;
-         $this->csvReader = null;
-         $this->rule = null;
-     }
-
  }
