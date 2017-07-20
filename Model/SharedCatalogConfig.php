@@ -31,7 +31,7 @@ class SharedCatalogConfig {
     /**
      * @var string
      */
-    protected $validCatalogName = 'Registered Users';
+    protected $validCatalogName = 'B2B Registered Users';
 
     /**
      * @var string

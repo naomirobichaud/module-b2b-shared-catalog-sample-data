@@ -75,7 +75,7 @@ class CompanyCatalog
     /**
      * @var string
      */
-    protected $validCompanyGroupCode = 'Registered Users';
+    protected $validCompanyGroupCode = 'B2B Registered Users';
 
     /**
      * @var array
