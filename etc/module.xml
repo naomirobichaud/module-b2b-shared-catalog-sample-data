@@ -16,10 +16,15 @@
             <module name="Magento_CompanyCredit"/>
             <module name="Magento_CatalogPermissions"/>
             <module name="MagentoEse_B2bAdminConfigurations"/>
-            <module name="MagentoEse_B2BCatalogSampleData"/>
             <module name="MagentoEse_SalesSampleData"/>
             <module name="FireGento_FastSimpleImport"/>
             <module name="MagentoEse_B2BCompanySampleData"/>
+            <module name="MagentoEse_B2BCatalogSampleData"/>
+            <module name="MagentoEse_B2BPhilipsSampleData"/>
+            <module name="MagentoEse_B2BSiemensSampleData"/>
+            <module name="MagentoEse_B2BLegrandSampleData"/>
+            <module name="MagentoEse_B2BMilwaukeeSampleData"/>
+            <module name="MagentoEse_B2BMiscSampleData"/>
             <module name="Magento_Swatches"/>
             <module name="Magento_SwatchesLayeredNavigation"/>
         </sequence>
