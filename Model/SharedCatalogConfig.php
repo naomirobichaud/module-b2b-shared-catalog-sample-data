@@ -76,9 +76,9 @@ class SharedCatalogConfig {
 
     public function install(){
         /* add products to custom catalog */
-        $this->assignProductsToCatalog($this->sharedCatalogName, $this->customCats);
+        //$this->assignProductsToCatalog($this->sharedCatalogName, $this->customCats);
         /* add products to registered user catalog */
-        $this->assignProductsToCatalog($this->validCatalogName, $this->publicCats);
+        //$this->assignProductsToCatalog($this->validCatalogName, $this->publicCats);
         /* add products to default catalog */
         $this->assignProductsToCatalog($this->publicCatalogName, $this->publicCats);
     }
