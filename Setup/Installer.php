@@ -66,14 +66,14 @@ class Installer implements Setup\SampleData\InstallerInterface
      */
     public function install()
     {   $this->catalogSetup->install();
-        //$this->relatedProducts->install(['MagentoEse_B2BSharedCatalogSampleData::fixtures/related_products.csv']);
+        $this->relatedProducts->install(['MagentoEse_B2BSharedCatalogSampleData::fixtures/related_products.csv']);
         $this->sharedCatalogConfig->install();
-        //$this->preferredProducts->install(['MagentoEse_B2BSharedCatalogSampleData::fixtures/preferredproducts.csv']);
-        /*$this->tierPricing->install([
+        $this->preferredProducts->install(['MagentoEse_B2BSharedCatalogSampleData::fixtures/preferredproducts.csv']);
+        $this->tierPricing->install([
             'MagentoEse_B2BSharedCatalogSampleData::fixtures/legrand_tier_pricing.csv',
             'MagentoEse_B2BSharedCatalogSampleData::fixtures/milwaukee_tier_pricing.csv',
             'MagentoEse_B2BSharedCatalogSampleData::fixtures/philips_tier_pricing.csv',
             'MagentoEse_B2BSharedCatalogSampleData::fixtures/siemens_tier_pricing.csv',
-            'MagentoEse_B2BSharedCatalogSampleData::fixtures/case_tier_pricing.csv']);*/
+            'MagentoEse_B2BSharedCatalogSampleData::fixtures/case_tier_pricing.csv']);
     }
 }
