@@ -10,6 +10,8 @@
         <sequence>
             <module name="Magento_B2b"/>
             <module name="Magento_Company"/>
+            <module name="Magento_Customer"/>
+            <module name="Magento_TargetRule"/>
             <module name="Magento_NegotiableQuote"/>
             <module name="Magento_RequisitionList"/>
             <module name="Magento_SharedCatalog"/>
