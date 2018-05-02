@@ -94,14 +94,15 @@ class SharedCatalogConfig {
     {
         $customCatIds = array();
         foreach ($categoryPaths as $categoryPath){
-            array_push($customCatIds,$this->getIdFromPath($this->_initCategories(),$categoryPath));
+            $customCatIds = [$this->getIdFromPath($this->_initCategories(),$categoryPath)];
+            //get catalog id
+            $catalogId = $this->getCatalogByName($catalogName)->getid();
+            //assign categories to catalog
+            $this->categoryManagement->assignCategories($catalogId,$this->getCategories($customCatIds));
+            //assign to catalog
+            $this->sharedCatalogAssignment->assignProductsForCategories($catalogId,$customCatIds);
         }
-        //get catalog id
-        $catalogId = $this->getCatalogByName($catalogName)->getid();
-        //assign categories to catalog
-        $this->categoryManagement->assignCategories($catalogId,$this->getCategories($customCatIds));
-        //assign to catalog
-        $this->sharedCatalogAssignment->assignProductsForCategories($catalogId,$customCatIds);
+
     }
 
     /**
