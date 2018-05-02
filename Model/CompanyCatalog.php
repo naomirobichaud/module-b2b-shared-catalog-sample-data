@@ -200,6 +200,7 @@ class CompanyCatalog
      * @return \Magento\SharedCatalog\Model\SharedCatalog
      */
     private function createCatalog(array $catalogData){
+        /** @var \Magento\SharedCatalog\Model\SharedCatalog $catalog */
         $catalog = $this->sharedCatalog->create();
         $catalog->setName($catalogData['name']);
         $catalog->setDescription($catalogData['description']);
