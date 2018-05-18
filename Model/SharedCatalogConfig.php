@@ -114,6 +114,8 @@ class SharedCatalogConfig {
         'All Products/Tools/Straps & Staples',
         'All Products/Tools/Tape','Best Sellers');
 
+    protected $productCats = array('All Products','Best Sellers');
+
     /** @var \Magento\SharedCatalog\Model\SharedCatalogAssignment  */
     protected $sharedCatalogAssignment;
 
@@ -148,9 +150,12 @@ class SharedCatalogConfig {
         
         /* add products to custom catalog */
         $this->assignProductsToCatalog($this->sharedCatalogName, $this->customCats);
+        $this->assignProductsToCatalogCategories($this->sharedCatalogName, $this->customCats);
         $this->assignProductsToCatalog($this->validCatalogName, $this->publicCats);
+        $this->assignProductsToCatalogCategories($this->validCatalogName, $this->publicCats);
         /* add products to default catalog */
         $this->assignProductsToCatalog($this->publicCatalogName, $this->publicCats);
+        $this->assignProductsToCatalogCategories($this->publicCatalogName, $this->productCats);
     }
 
     /**
@@ -166,6 +171,25 @@ class SharedCatalogConfig {
             $catalogId = $this->getCatalogByName($catalogName)->getid();
             //assign categories to catalog
             $this->categoryManagement->assignCategories($catalogId,$this->getCategories($customCatIds));
+            //assign to catalog
+            //$this->sharedCatalogAssignment->assignProductsForCategories($catalogId,$customCatIds);
+        }
+
+    }
+
+    /**
+     * @param string $catalogName
+     * @param array $categoryPaths
+     */
+    private function assignProductsToCatalogCategories($catalogName, array $categoryPaths)
+    {
+        $customCatIds = array();
+        foreach ($categoryPaths as $categoryPath){
+            $customCatIds = [$this->getIdFromPath($this->_initCategories(),$categoryPath)];
+            //get catalog id
+            $catalogId = $this->getCatalogByName($catalogName)->getid();
+            //assign categories to catalog
+            //$this->categoryManagement->assignCategories($catalogId,$this->getCategories($customCatIds));
             //assign to catalog
             $this->sharedCatalogAssignment->assignProductsForCategories($catalogId,$customCatIds);
         }
