@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-namespace MagentoEse\B2BSharedCatalogSampleData\Model;
+namespace MagentoEse\B2bSharedCatalogSampleDataLight\Model;
 
 //use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 
@@ -80,7 +80,7 @@ class CompanyCatalog
     /**
      * @var array
      */
-    protected $nonSharedCatalogCompanies = array('Prestige Worldwide','Dunder Mifflin');
+    protected $nonSharedCatalogCompanies = array('Dunder Mifflin');
 
     /**
      * CompanyCatalog constructor.
