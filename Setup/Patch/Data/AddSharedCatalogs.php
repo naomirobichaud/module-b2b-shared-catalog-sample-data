@@ -4,12 +4,12 @@
  * See COPYING.txt for license details.
  */
 
-namespace MagentoEse\B2bSharedCatalogSampleDataLight\Setup\Patch\Data;
+namespace MagentoEse\B2BSharedCatalogSampleData\Setup\Patch\Data;
 
 
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use MagentoEse\B2bSharedCatalogSampleDataLight\Model\CompanyCatalog;
-use MagentoEse\B2bSharedCatalogSampleDataLight\Model\SharedCatalogConfig;
+use MagentoEse\B2BSharedCatalogSampleData\Model\CompanyCatalog;
+use MagentoEse\B2BSharedCatalogSampleData\Model\SharedCatalogConfig;
 
 class AddSharedCatalogs implements DataPatchInterface
 {

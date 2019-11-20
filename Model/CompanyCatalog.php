@@ -4,7 +4,7 @@
  * See COPYING.txt for license details.
  */
 
-namespace MagentoEse\B2bSharedCatalogSampleDataLight\Model;
+namespace MagentoEse\B2BSharedCatalogSampleData\Model;
 
 //use Magento\Framework\Setup\SampleData\Context as SampleDataContext;
 
