@@ -25,9 +25,9 @@ class SharedCatalogConfig {
 
     /**
      * @var string
-     * Edit to appropriote catalog name for Luma. 
+     * Edited to appropriote catalog name for Venia. 
      */
-    protected $sharedCatalogName = 'Tools & Lighting';
+    protected $sharedCatalogName = 'All Products Shared Catalog';
 
     /**
      * @var string
@@ -41,81 +41,16 @@ class SharedCatalogConfig {
 
     /**
      * @var array
+     * Corresponds to sharedCatalogName
      */
-    protected $customCats = array('All Products/Lighting','All Products/Tools','Best Sellers');
+    protected $customCats = array('Accessories', 'Belts', 'Jewelry' 'Scarves');
 
     /**
      * @var array
      */
-    protected $publicCats = array('All Products','All Products/Raceways & Enclosures',
-        'All Products/Fuses & Breakers',
-        'All Products/Home Automation & Controls',
-        'All Products/Industrial Automation & Controls',
-        'All Products/Lighting',
-        'All Products/Power Distribution',
-        'All Products/Switches & Wiring Devices',
-        'All Products/Tools',
-        'All Products/Raceways & Enclosures/Enclosures',
-        'All Products/Raceways & Enclosures/Floor Boxes',
-        'All Products/Raceways & Enclosures/Plates',
-        'All Products/Raceways & Enclosures/PVC Boxes',
-        'All Products/Raceways & Enclosures/Weatherproof Boxes',
-        'All Products/Raceways & Enclosures/Weatherproof Covers',
-        'All Products/Raceways & Enclosures/Accessories',
-        'All Products/Raceways & Enclosures/Connectors',
-        'All Products/Raceways & Enclosures/Raceways',
-        'All Products/Fuses & Breakers/Breakers',
-        'All Products/Fuses & Breakers/Fuse Accessories',
-        'All Products/Fuses & Breakers/Fuse Blocks & Holders',
-        'All Products/Fuses & Breakers/Fuses',
-        'All Products/Home Automation & Controls/Accessories',
-        'All Products/Home Automation & Controls/Audio',
-        'All Products/Home Automation & Controls/Controls',
-        'All Products/Home Automation & Controls/Video',
-        'All Products/Industrial Automation & Controls/Automation PLC',
-        'All Products/Industrial Automation & Controls/Control IEC',
-        'All Products/Industrial Automation & Controls/Control NEMA',
-        'All Products/Industrial Automation & Controls/Control Others',
-        'All Products/Industrial Automation & Controls/Motor Control(MMC)',
-        'All Products/Industrial Automation & Controls/Motor Electrical',
-        'All Products/Lighting/3-Way Lamps',
-        'All Products/Lighting/Ballast Lamps',
-        'All Products/Lighting/Ballasts',
-        'All Products/Lighting/CFL',
-        'All Products/Lighting/Floods and Spots',
-        'All Products/Lighting/Halogen Lamps',
-        'All Products/Lighting/HID Lamps',
-        'All Products/Lighting/Incandescent Lamps',
-        'All Products/Lighting/LED Lamps',
-        'All Products/Lighting/LED Strips',
-        'All Products/Lighting/Linear Fluorescent Lamps',
-        'All Products/Lighting/Outdoor',
-        'All Products/Lighting/Recessed',
-        'All Products/Lighting/Recessed LEDs',
-        'All Products/Lighting/Recessed Trims',
-        'All Products/Lighting/Track Lighting',
-        'All Products/Lighting/Troffers',
-        'All Products/Lighting/Wallpacks',
-        'All Products/Power Distribution/Meter Sockets & Accessories',
-        'All Products/Power Distribution/Panels',
-        'All Products/Power Distribution/Switches',
-        'All Products/Power Distribution/Transformers',
-        'All Products/Switches & Wiring Devices/Dimmers',
-        'All Products/Switches & Wiring Devices/GFCI',
-        'All Products/Switches & Wiring Devices/Motion Sensors',
-        'All Products/Switches & Wiring Devices/Plugs & Receptacles',
-        'All Products/Switches & Wiring Devices/Switches',
-        'All Products/Switches & Wiring Devices/Wall Plates',
-        'All Products/Tools/Clothing & Accessories',
-        'All Products/Tools/Data Tools',
-        'All Products/Tools/Hand Tools',
-        'All Products/Tools/Meters',
-        'All Products/Tools/Power Tools',
-        'All Products/Tools/Shop Supplies',
-        'All Products/Tools/Straps & Staples',
-        'All Products/Tools/Tape','Best Sellers');
+    protected $publicCats = array('Accessories', 'Belts');
 
-    protected $productCats = array('All Products','Best Sellers');
+    protected $productCats = array('Scarves');
 
     /** @var \Magento\SharedCatalog\Model\SharedCatalogAssignment  */
     protected $sharedCatalogAssignment;
@@ -154,7 +89,7 @@ class SharedCatalogConfig {
         $this->assignProductsToCatalogCategories($this->sharedCatalogName, $this->customCats);
         $this->assignProductsToCatalog($this->validCatalogName, $this->publicCats);
         $this->assignProductsToCatalogCategories($this->validCatalogName, $this->publicCats);
-        /* add products to default catalog */
+        /* add products to default catalog - why is productCats used here?? */
         $this->assignProductsToCatalog($this->publicCatalogName, $this->publicCats);
         $this->assignProductsToCatalogCategories($this->publicCatalogName, $this->productCats);
     }
