@@ -70,7 +70,7 @@ class CompanyCatalog
     /**
      * @var string
      */
-    protected $sharedCatalogGroupCode = 'Tools & Lighting';
+    protected $sharedCatalogGroupCode = 'All Products Shared Catalog';
 
     /**
      * @var string
@@ -134,7 +134,7 @@ class CompanyCatalog
         //create catalog
         $catalogData = array(
             "name" => $this->sharedCatalogGroupCode,
-            "description" => "",
+            "description" => "This is the primary shared catalog for customers within Vandelay Industries",
             "customer_group_id" => $groupId
         );
         $this->createCatalog($catalogData);
@@ -161,7 +161,7 @@ class CompanyCatalog
         //create catalog
         $catalogData = array(
             "name" => $this->validCompanyGroupCode,
-            "description" => "",
+            "description" => "Catalog for all logged in users",
             "customer_group_id" => $groupId
         );
         $this->createCatalog($catalogData);
