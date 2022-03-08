@@ -43,14 +43,14 @@ class SharedCatalogConfig {
      * @var array
      * Corresponds to sharedCatalogName
      */
-    protected $customCats = array('Accessories', 'Belts', 'Jewelry' 'Scarves');
+    protected $customCats = array('Accessories','Accessories/Belts','Accessories/Jewelry' 'Accessories/Scarves');
 
     /**
      * @var array
      */
-    protected $publicCats = array('Accessories', 'Belts');
+    protected $publicCats = array('Accessories','Accessories/Belts');
 
-    protected $productCats = array('Scarves');
+    protected $productCats = array('Accessories/Scarves');
 
     /** @var \Magento\SharedCatalog\Model\SharedCatalogAssignment  */
     protected $sharedCatalogAssignment;
