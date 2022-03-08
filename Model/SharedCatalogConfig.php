@@ -25,6 +25,7 @@ class SharedCatalogConfig {
 
     /**
      * @var string
+     * Edit to appropriote catalog name for Luma. 
      */
     protected $sharedCatalogName = 'Tools & Lighting';
 
