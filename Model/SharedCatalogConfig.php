@@ -43,7 +43,7 @@ class SharedCatalogConfig {
      * @var array
      * Corresponds to sharedCatalogName
      */
-    protected $customCats = array('Accessories','Accessories/Belts','Accessories/Jewelry' 'Accessories/Scarves');
+    protected $customCats = array('Accessories','Accessories/Belts','Accessories/Jewelry','Accessories/Scarves');
 
     /**
      * @var array
